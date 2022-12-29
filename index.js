@@ -62,7 +62,7 @@ app.use(cookieParser())
 dotenv.config()
 app.use(
 	cors({
-		origin: "http://localhost:3000",
+		origin: `${process.env.CLIENT_URL}`,
 		methods: "GET,POST,PUT,DELETE",
 		credentials: true
 	})
@@ -106,7 +106,7 @@ app.get("/auth/google", passport.authenticate("google", { scope: ["profile"] }))
 app.get(
 	"/auth/google/callback",
 	passport.authenticate("google", {
-		failureRedirect: `${process.env.CLIENT_URL}auth`
+		failureRedirect: `${process.env.CLIENT_URL}/auth`
 	}),
 	function (req, res) {
 		// Successful authentication, redirect secrets.
@@ -129,7 +129,7 @@ app.post("/logout", (req, res) => {
 		// res.redirect("/")
 	})
 
-	res.status(200).json(`${process.env.CLIENT_URL}auth`)
+	res.status(200).json(`${process.env.CLIENT_URL}/auth`)
 })
 //usage of routes
 app.use("/auth", AuthRoute)
