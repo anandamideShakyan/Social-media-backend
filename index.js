@@ -106,11 +106,11 @@ app.get("/auth/google", passport.authenticate("google", { scope: ["profile"] }))
 app.get(
 	"/auth/google/callback",
 	passport.authenticate("google", {
-		failureRedirect: "http://localhost:3000/auth"
+		failureRedirect: `${process.env.CLIENT_URL}auth`
 	}),
 	function (req, res) {
 		// Successful authentication, redirect secrets.
-		res.redirect("http://localhost:3000")
+		res.redirect(`${process.env.CLIENT_URL}`)
 	}
 )
 app.get("/login/success", (req, res) => {
@@ -129,7 +129,7 @@ app.post("/logout", (req, res) => {
 		// res.redirect("/")
 	})
 
-	res.status(200).json("http://localhost:3000")
+	res.status(200).json(`${process.env.CLIENT_URL}auth`)
 })
 //usage of routes
 app.use("/auth", AuthRoute)
