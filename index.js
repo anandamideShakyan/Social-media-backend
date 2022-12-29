@@ -25,7 +25,7 @@ passport.use(
 		{
 			clientID: process.env.CLIENT_ID,
 			clientSecret: process.env.CLIENT_SECRET,
-			callbackURL: `${process.env.CLIENT_URL}/auth/google/callback`,
+			callbackURL: "https://social-media-backend-1uxl.onrender.com/auth/google/callback",
 			userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
 			scope: ["profile"],
 			state: "pass-through value"
